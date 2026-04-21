@@ -1,0 +1,98 @@
+package com.example.Modelo;
+
+import com.example.Interfaces.Volador;
+
+public class Dragon extends Criatura implements Volador {
+
+    private String escamas;
+
+    /**
+     * Arma por composición: el dragón puede equipar una garra mágica
+     * u otro arma además de su ataque natural.
+     */
+    private Arma arma;
+
+    /** Indica si el dragón está actualmente en vuelo */
+    private boolean enVuelo;
+
+    /**
+     * Constructor del Dragón.
+     *
+     * @param nombre 
+     * @param salud   
+     * @param fuerza  
+     * @param escamas
+     */
+    public Dragon(String nombre, int salud, int fuerza, String escamas) {
+        super(nombre, salud, fuerza);
+        this.escamas  = escamas;
+        this.enVuelo  = false;
+    }
+
+    //Implementación abstracta
+    @Override
+    public void atacar(Criatura objetivo) {
+        int dañoBase  = fuerza * 2;                    
+        int dañoTotal = dañoBase;
+
+        System.out.println("\n" + nombre + " lanza un ATAQUE DE FUEGO sobre " + objetivo.getNombre() + "!");
+
+        if (arma != null) {
+            arma.atacarConArma(objetivo);
+            dañoTotal += arma.getDañoAdicional();
+        }
+
+        System.out.println("  Daño infligido: " + dañoTotal + " (fuerza*2=" + dañoBase
+                + (arma != null ? " + arma=" + arma.getDañoAdicional() : "") + ")");
+
+        objetivo.defender(dañoTotal);
+    }
+
+    /**
+     * El dragón se defiende usando sus resistentes escamas,
+     * reduciendo el daño en un 20%.
+     */
+    @Override
+    public void defender(int daño) {
+        int reduccion  = (int) (daño * 0.20);               
+        int dañoFinal  = daño - reduccion;
+        salud         -= dañoFinal;
+        if (salud < 0) salud = 0;
+
+        System.out.println("" + nombre + " usa sus escamas (" + escamas + ") y reduce "
+                + reduccion + " de daño. Recibe " + dañoFinal + ". Salud restante: " + salud);
+    }
+
+    //Interfaz Volador
+
+    @Override
+    public void volar() {
+        enVuelo = true;
+        System.out.println("" + nombre + " despliega sus alas y VUELA sobre el campo de batalla!");
+    }
+
+    @Override
+    public void aterrizar() {
+        enVuelo = false;
+        System.out.println("" + nombre + " aterriza con un estruendo!");
+    }
+
+    //Gestión de arma
+
+    //Equipa un arma al dragón
+    public void equiparArma(Arma arma) {
+        this.arma = arma;
+        System.out.println("" + nombre + " equipa: " + arma);
+    }
+
+    // Desequipa el arma actual
+    public void desequiparArma() {
+        System.out.println("" + nombre + " desequipa: " + (arma != null ? arma : "ninguna"));
+        this.arma = null;
+    }
+
+    //Getters
+    public String getEscamas()  { return escamas; }
+    public Arma   getArma()     { return arma;    }
+    public boolean isEnVuelo()  { return enVuelo; }
+}
