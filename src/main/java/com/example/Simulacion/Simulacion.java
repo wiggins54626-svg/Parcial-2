@@ -70,11 +70,11 @@ public class Simulacion {
             System.out.println("║             ¡EMPATE! Ambos cayeron.           ║");
         } else if (!criatura1.estaViva()) {
             System.out.printf("║  %-20s fue DERROTADO/A!          ║%n", criatura1.getNombre());
-            System.out.printf("║  %-20s es el GANADOR 🏆           ║%n", criatura2.getNombre());
+            System.out.printf("║  %-20s es el GANADOR            ║%n", criatura2.getNombre());
             System.out.printf("║  Salud restante: %-6d                       ║%n", criatura2.getSalud());
         } else {
             System.out.printf("║  %-20s fue DERROTADO/A!          ║%n", criatura2.getNombre());
-            System.out.printf("║  %-20s es el GANADOR 🏆           ║%n", criatura1.getNombre());
+            System.out.printf("║  %-20s es el GANADOR            ║%n", criatura1.getNombre());
             System.out.printf("║  Salud restante: %-6d                       ║%n", criatura1.getSalud());
         }
         System.out.println("╚══════════════════════════════════════════════╝\n");
