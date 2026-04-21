@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("╔══════════════════════════════════════════════╗");
-        System.out.println("║     🐉  SISTEMA DE BATALLAS - PARCIAL II  🐉  ║");
+        System.out.println("║       SISTEMA DE BATALLAS - PARCIAL II       ║");
         System.out.println("║         Programación II  -  G411             ║");
         System.out.println("╚══════════════════════════════════════════════╝\n");
 
@@ -69,6 +69,6 @@ public class Main {
 
         Simulacion.simularBatalla(dragon3, mago3);
 
-        System.out.println("\n✅  Todas las batallas han finalizado.");
+        System.out.println("\n  Todas las batallas han finalizado.");
     }
 }

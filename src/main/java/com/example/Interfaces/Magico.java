@@ -1,11 +1,5 @@
 package com.example.Interfaces;
 
-/**
- * Interfaz Magico
- * Define el comportamiento de las criaturas con habilidades mágicas.
- * Separada de la clase base Criatura para no forzar a todas las
- * criaturas a tener magia; solo quienes la implementen poseen este poder.
- */
 public interface Magico {
 
     /**

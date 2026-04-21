@@ -1,31 +1,17 @@
 package com.example.Modelo;
 
-/**
- * Clase Abstracta Criatura
- * Define la plantilla común para todas las criaturas del juego.
- *
- * Decisión de diseño: se usa clase abstracta (no interfaz) porque
- * las criaturas comparten estado (nombre, salud, fuerza) y un método
- * concreto (estaViva). Los métodos abstractos obligan a cada subclase
- * a implementar su propia lógica de ataque y defensa.
- */
 public abstract class Criatura {
 
-    /** Nombre identificador de la criatura */
     protected String nombre;
-
-    /** Puntos de salud actuales; cuando llega a 0 la criatura muere */
     protected int salud;
-
-    /** Fuerza base usada para calcular el daño de ataque */
     protected int fuerza;
 
     /**
      * Constructor base para todas las criaturas.
      *
-     * @param nombre nombre de la criatura
-     * @param salud  salud inicial
-     * @param fuerza fuerza de ataque base
+     * @param nombre
+     * @param salud  
+     * @param fuerza 
      */
     public Criatura(String nombre, int salud, int fuerza) {
         this.nombre  = nombre;
@@ -33,7 +19,7 @@ public abstract class Criatura {
         this.fuerza  = fuerza;
     }
 
-    // ──────────────────────────── Métodos abstractos ────────────────────────────
+    //Métodos abstractos
 
     /**
      * Ataca a la criatura objetivo.
@@ -51,7 +37,7 @@ public abstract class Criatura {
      */
     public abstract void defender(int daño);
 
-    // ──────────────────────────── Método concreto ───────────────────────────────
+    //Método concreto
 
     /**
      * Indica si la criatura sigue viva.
@@ -62,13 +48,13 @@ public abstract class Criatura {
         return salud > 0;
     }
 
-    // ──────────────────────────── Getters y Setters ─────────────────────────────
+    //Getters y Setters
 
     public String getNombre() { return nombre; }
     public int getSalud()     { return salud;  }
     public int getFuerza()    { return fuerza; }
 
-    /** Permite modificar la salud externamente (p.ej. curación o penalización) */
+    //Permite modificar la salud externamente (p.ej. curación o penalización)
     public void setSalud(int salud) { this.salud = salud; }
 
     @Override

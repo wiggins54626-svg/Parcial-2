@@ -26,7 +26,7 @@ public class Simulacion {
     public static void simularBatalla(Criatura criatura1, Criatura criatura2) {
 
         System.out.println("\n╔══════════════════════════════════════════════╗");
-        System.out.println("║          ⚔️  INICIO DE BATALLA ⚔️             ║");
+        System.out.println("║            INICIO DE BATALLA                 ║");
         System.out.println("╠══════════════════════════════════════════════╣");
         System.out.printf("║  %-20s  VS  %-20s║%n",
                 criatura1.getNombre(), criatura2.getNombre());
@@ -56,14 +56,14 @@ public class Simulacion {
 
             // Seguridad: evita bucle infinito si ambas tienen reducción de daño alta
             if (turno > 100) {
-                System.out.println("\n⚠️  La batalla superó 100 turnos. Se declara EMPATE por agotamiento.");
+                System.out.println("\n La batalla superó 100 turnos. Se declara EMPATE por agotamiento.");
                 return;
             }
         }
 
         // ── Resultado final ──
         System.out.println("\n╔══════════════════════════════════════════════╗");
-        System.out.println("║             🏆  RESULTADO FINAL  🏆           ║");
+        System.out.println("║                 RESULTADO FINAL              ║");
         System.out.println("╠══════════════════════════════════════════════╣");
 
         if (!criatura1.estaViva() && !criatura2.estaViva()) {

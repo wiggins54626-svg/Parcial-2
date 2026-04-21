@@ -2,21 +2,8 @@ package com.example.Modelo;
 
 import com.example.Interfaces.Volador;
 
-/**
- * Clase Dragon
- * Criatura poderosa que implementa la interfaz Volador.
- *
- * Decisión de diseño:
- * - Hereda de Criatura para obtener los atributos comunes.
- * - Implementa Volador porque los dragones pueden volar; esto no se fuerza
- *   en la clase base ya que no todas las criaturas vuelan.
- * - Usa COMPOSICIÓN para portar un Arma (garra/mordida de fuego).
- * - Su ataque es el doble de su fuerza base (fuerza * 2), haciéndolo
- *   el atacante más peligroso del sistema.
- */
 public class Dragon extends Criatura implements Volador {
 
-    /** Material de las escamas; afecta la reducción de daño al defender */
     private String escamas;
 
     /**
@@ -31,10 +18,10 @@ public class Dragon extends Criatura implements Volador {
     /**
      * Constructor del Dragón.
      *
-     * @param nombre  nombre del dragón
-     * @param salud   salud inicial
-     * @param fuerza  fuerza base (el ataque real será fuerza*2)
-     * @param escamas descripción del tipo de escamas
+     * @param nombre 
+     * @param salud   
+     * @param fuerza  
+     * @param escamas
      */
     public Dragon(String nombre, int salud, int fuerza, String escamas) {
         super(nombre, salud, fuerza);
@@ -42,15 +29,10 @@ public class Dragon extends Criatura implements Volador {
         this.enVuelo  = false;
     }
 
-    // ──────────────────────────── Implementación abstracta ──────────────────────
-
-    /**
-     * El dragón ataca con fuerza doble (fuerza * 2) y,
-     * si tiene arma equipada, suma el daño adicional de ésta.
-     */
+    //Implementación abstracta
     @Override
     public void atacar(Criatura objetivo) {
-        int dañoBase  = fuerza * 2;                          // multiplicador del dragón
+        int dañoBase  = fuerza * 2;                    
         int dañoTotal = dañoBase;
 
         System.out.println("\n" + nombre + " lanza un ATAQUE DE FUEGO sobre " + objetivo.getNombre() + "!");
@@ -68,11 +50,11 @@ public class Dragon extends Criatura implements Volador {
 
     /**
      * El dragón se defiende usando sus resistentes escamas,
-     * reduciendo el daño en un 20 % (redondeado hacia abajo).
+     * reduciendo el daño en un 20%.
      */
     @Override
     public void defender(int daño) {
-        int reduccion  = (int) (daño * 0.20);               // las escamas absorben 20%
+        int reduccion  = (int) (daño * 0.20);               
         int dañoFinal  = daño - reduccion;
         salud         -= dañoFinal;
         if (salud < 0) salud = 0;
@@ -81,7 +63,7 @@ public class Dragon extends Criatura implements Volador {
                 + reduccion + " de daño. Recibe " + dañoFinal + ". Salud restante: " + salud);
     }
 
-    // ──────────────────────────── Interfaz Volador ──────────────────────────────
+    //Interfaz Volador
 
     @Override
     public void volar() {
@@ -95,22 +77,21 @@ public class Dragon extends Criatura implements Volador {
         System.out.println("" + nombre + " aterriza con un estruendo!");
     }
 
-    // ──────────────────────────── Gestión de arma (composición) ─────────────────
+    //Gestión de arma
 
-    /** Equipa un arma al dragón. */
+    //Equipa un arma al dragón
     public void equiparArma(Arma arma) {
         this.arma = arma;
         System.out.println("" + nombre + " equipa: " + arma);
     }
 
-    /** Desequipa el arma actual. */
+    // Desequipa el arma actual
     public void desequiparArma() {
         System.out.println("" + nombre + " desequipa: " + (arma != null ? arma : "ninguna"));
         this.arma = null;
     }
 
-    // ──────────────────────────── Getters ───────────────────────────────────────
-
+    //Getters
     public String getEscamas()  { return escamas; }
     public Arma   getArma()     { return arma;    }
     public boolean isEnVuelo()  { return enVuelo; }

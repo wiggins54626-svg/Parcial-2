@@ -1,16 +1,5 @@
 package com.example.Modelo;
 
-/**
- * Clase Guerrero
- * Combatiente cuerpo a cuerpo que usa espada y armadura.
- *
- * Decisión de diseño:
- * - No implementa Volador ni Magico porque un guerrero clásico no vuela
- *   ni tiene magia; esto demuestra que las interfaces son opcionales.
- * - Su defensa es la más robusta: reduce el daño en un 30 % gracias
- *   a su armadura, compensando su ataque sin multiplicador.
- * - Usa COMPOSICIÓN para portar un Arma (espada, hacha, etc.).
- */
 public class Guerrero extends Criatura {
 
     /** Nombre del arma cuerpo a cuerpo que lleva (descripción textual interna) */
@@ -22,17 +11,17 @@ public class Guerrero extends Criatura {
     /**
      * Constructor del Guerrero.
      *
-     * @param nombre     nombre del guerrero
-     * @param salud      salud inicial
-     * @param fuerza     fuerza base de ataque
-     * @param armaNombre nombre descriptivo de su arma de mano
+     * @param nombre   
+     * @param salud   
+     * @param fuerza    
+     * @param armaNombre 
      */
     public Guerrero(String nombre, int salud, int fuerza, String armaNombre) {
         super(nombre, salud, fuerza);
         this.armaNombre = armaNombre;
     }
 
-    // ──────────────────────────── Implementación abstracta ──────────────────────
+    //Implementación abstracta
 
     /**
      * El guerrero ataca con su espada/hacha causando daño igual a su fuerza.
@@ -43,7 +32,7 @@ public class Guerrero extends Criatura {
         int dañoBase  = fuerza;
         int dañoTotal = dañoBase;
 
-        System.out.println("\n⚔️  " + nombre + " ATACA con su " + armaNombre
+        System.out.println("\n" + nombre + " ATACA con su " + armaNombre
                 + " a " + objetivo.getNombre() + "!");
 
         if (arma != null) {
@@ -63,29 +52,28 @@ public class Guerrero extends Criatura {
      */
     @Override
     public void defender(int daño) {
-        int armadura  = (int) (daño * 0.30);               // 30% bloqueado por armadura
+        int armadura  = (int) (daño * 0.30);         
         int dañoFinal = daño - armadura;
         salud        -= dañoFinal;
         if (salud < 0) salud = 0;
 
-        System.out.println("  🛡️  " + nombre + " bloquea con su armadura (-" + armadura
+        System.out.println("" + nombre + " bloquea con su armadura (-" + armadura
                 + " de daño). Recibe " + dañoFinal + ". Salud restante: " + salud);
     }
 
-    // ──────────────────────────── Gestión de arma (composición) ─────────────────
+    //Gestión de arma (composición)
 
     public void equiparArma(Arma arma) {
         this.arma = arma;
-        System.out.println("⚔️  " + nombre + " equipa: " + arma);
+        System.out.println("" + nombre + " equipa: " + arma);
     }
 
     public void desequiparArma() {
-        System.out.println("⚔️  " + nombre + " desequipa: " + (arma != null ? arma : "ninguna"));
+        System.out.println("" + nombre + " desequipa: " + (arma != null ? arma : "ninguna"));
         this.arma = null;
     }
 
-    // ──────────────────────────── Getters ───────────────────────────────────────
-
+    //Getters
     public String getArmaNombre() { return armaNombre; }
     public Arma   getArma()       { return arma;       }
 }
