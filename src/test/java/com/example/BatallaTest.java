@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Sistema de Batallas - Pruebas Unitarias")
 class BatallaTest {
 
-    // ─────────────────────────── Arma ───────────────────────────────────────────
+    //Arma
 
     @Nested
     @DisplayName("Pruebas de Arma")
@@ -39,7 +39,7 @@ class BatallaTest {
         }
     }
 
-    // ─────────────────────────── Dragon ─────────────────────────────────────────
+    //Dragon
 
     @Nested
     @DisplayName("Pruebas de Dragon")
@@ -113,7 +113,7 @@ class BatallaTest {
         }
     }
 
-    // ─────────────────────────── Mago ───────────────────────────────────────────
+    //Mago
 
     @Nested
     @DisplayName("Pruebas de Mago")
@@ -174,7 +174,7 @@ class BatallaTest {
         }
     }
 
-    // ─────────────────────────── Guerrero ───────────────────────────────────────
+    //Guerrero
 
     @Nested
     @DisplayName("Pruebas de Guerrero")
@@ -236,7 +236,7 @@ class BatallaTest {
         }
     }
 
-    // ─────────────────────────── Polimorfismo ───────────────────────────────────
+    //Polimorfismo
 
     @Nested
     @DisplayName("Pruebas de polimorfismo")
@@ -249,31 +249,31 @@ class BatallaTest {
             Criatura m = new Mago("M", 100, 10);
             Criatura g = new Guerrero("G", 100, 10, "Espada");
 
-            assertInstanceOf(com.batalla.modelo.Criatura.class, d);
-            assertInstanceOf(com.batalla.modelo.Criatura.class, m);
-            assertInstanceOf(com.batalla.modelo.Criatura.class, g);
+            assertInstanceOf(com.example.Modelo.Criatura.class, d);
+            assertInstanceOf(com.example.Modelo.Criatura.class, m);
+            assertInstanceOf(com.example.Modelo.Criatura.class, g);
         }
 
         @Test
         @DisplayName("Dragon implementa la interfaz Volador")
         void testDragonEsVolador() {
             Criatura dragon = new Dragon("D", 100, 10, "Escamas");
-            assertInstanceOf(com.batalla.interfaces.Volador.class, dragon);
+            assertInstanceOf(com.example.Interfaces.Volador.class, dragon);
         }
 
         @Test
         @DisplayName("Mago implementa la interfaz Magico")
         void testMagoEsMagico() {
             Criatura mago = new Mago("M", 100, 10);
-            assertInstanceOf(com.batalla.interfaces.Magico.class, mago);
+            assertInstanceOf(com.example.Interfaces.Magico.class, mago);
         }
 
         @Test
         @DisplayName("Guerrero NO implementa Volador ni Magico")
         void testGuerreroNoVuelaNoEsMagico() {
             Criatura guerrero = new Guerrero("G", 100, 10, "Espada");
-            assertFalse(guerrero instanceof com.batalla.interfaces.Volador);
-            assertFalse(guerrero instanceof com.batalla.interfaces.Magico);
+            assertFalse(guerrero instanceof com.example.Interfaces.Volador);
+            assertFalse(guerrero instanceof com.example.Interfaces.Magico);
         }
     }
 }
